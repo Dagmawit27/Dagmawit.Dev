@@ -131,7 +131,7 @@ function ProjectDetail() {
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
         <div className="eyebrow">§ Highlights</div>
         <ol className="mt-8 divide-y divide-border border-t border-b border-border">
-          {project.highlights.map((h, i) => (
+          {project.highlights.map((h: string, i: number) => (
             <li key={h} className="flex items-baseline gap-6 py-6">
               <span className="eyebrow w-16">{String(i + 1).padStart(2, "0")}</span>
               <span className="font-serif text-2xl text-foreground md:text-3xl">{h}</span>
