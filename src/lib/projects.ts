@@ -16,99 +16,65 @@ export type Project = {
   upcoming?: boolean;
 };
 
-const BASE = "https://dagmawit27.github.io/Dagmawit.Developer/assets";
-
 export const projects: Project[] = [
   {
-    slug: "simple-calculator",
-    title: "Simple Calculator",
-    tagline: "A responsive calculator exploring DOM fundamentals.",
-    year: "2024",
-    role: "Design & Development",
-    stack: ["HTML", "CSS", "JavaScript"],
-    cover: `${BASE}/calculator-W3Q2cR5A.webp`,
-    gallery: [`${BASE}/calculator-W3Q2cR5A.webp`],
-    github: "https://github.com/Dagmawit27/simpleCalculator.git",
-    live: "https://dagmawit27.github.io/simpleCalculator/",
-    overview:
-      "A minimal, responsive calculator built to sharpen fundamentals in DOM manipulation, event handling and layout math with vanilla JavaScript.",
-    problem:
-      "Most beginner calculators either break on edge cases or rely on eval. I wanted a small, safe, keyboard-friendly build that would still feel clean on any screen size.",
-    approach:
-      "Wrote a tiny expression evaluator, kept state in a single object, and used CSS grid for a precise button layout. Focus rings and keyboard shortcuts were added so the tool feels usable, not just visible.",
-    highlights: [
-      "Pure vanilla JS — no dependencies",
-      "Keyboard-driven with visible focus states",
-      "Fully responsive grid layout",
-    ],
-  },
-  {
-    slug: "gym-house",
-    title: "GYM House",
-    tagline: "A brand-forward landing page for a local fitness studio.",
-    year: "2024",
-    role: "Design & Development",
-    stack: ["HTML", "CSS", "JavaScript"],
-    cover: `${BASE}/portfolio-D9szlFAE.png`,
-    gallery: [`${BASE}/portfolio-D9szlFAE.png`],
-    github: "https://github.com/Dagmawit27/olanaGYM.git",
-    live: "https://dagmawit27.github.io/olanaGYM/",
-    overview:
-      "A responsive gym website presenting facilities, trainers, classes and membership tiers with a confident editorial feel.",
-    problem:
-      "The studio needed a site that felt as intentional as the space itself — clear tiers, honest photography, and a signup path that did not get lost in decoration.",
-    approach:
-      "Established a strict type scale, laid the page on a 12-column grid, and used restrained motion so the imagery leads. Membership tiers were reduced to three clear cards.",
-    highlights: [
-      "Type-led hero with a single primary CTA",
-      "Membership tiers reduced from six to three",
-      "Fully responsive from 320px to 1440px",
-    ],
-  },
-  {
-    slug: "burger-house",
-    title: "Burger House",
-    tagline: "A menu-first restaurant site with a warm, tactile feel.",
-    year: "2024",
-    role: "Design & Development",
-    stack: ["HTML", "CSS", "JavaScript"],
-    cover: `${BASE}/portfolio-1-DdRJO4gW.jpg`,
-    gallery: [`${BASE}/portfolio-1-DdRJO4gW.jpg`],
-    github: "https://github.com/Dagmawit27/portfolio1-burgerHouse.git",
-    live: "https://dagmawit27.github.io/portfolio1-burgerHouse/",
-    overview:
-      "A responsive burger restaurant site that puts the menu — not the marketing — at the center of the experience.",
-    problem:
-      "Most restaurant sites bury the menu three clicks deep. Guests want to see what's on offer, at what price, without hunting.",
-    approach:
-      "Menu became the homepage anchor. Deals sit above the fold as a rotating strip. Everything else supports the order decision.",
-    highlights: [
-      "Menu-as-homepage information architecture",
-      "Deal strip with keyboard-navigable slides",
-      "Optimized imagery under 100kb per item",
-    ],
-  },
-  {
-    slug: "ml-image-classifier",
-    title: "ML Image Classifier",
-    tagline: "Deep learning model for image classification using CNN.",
+    slug: "blood-bank-donor-portal",
+    title: "Blood Bank — Donor Portal",
+    tagline: "A donor-facing web platform that makes blood donation accessible, informed, and engaging.",
     year: "2025",
-    role: "Design & Development",
-    stack: ["Python", "TensorFlow", "Keras", "CNN", "Deep Learning"],
-    cover: `${BASE}/portfolio-1-DdRJO4gW.jpg`,
-    gallery: [`${BASE}/portfolio-1-DdRJO4gW.jpg`],
+    role: "Full-Stack Development",
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "REST API", "SMS Integration"],
+    cover: "/assets/donor.png",
+    gallery: [
+      "/assets/donor.png",
+      "/assets/donor2.png",
+      "/assets/donor3.png",
+      "/assets/donor4.png",
+    ],
     github: "",
     live: "",
     overview:
-      "A machine learning project focused on building and training convolutional neural networks (CNN) for image classification tasks. Currently in development.",
+      "A comprehensive donor-facing web application designed to reduce blood shortages by empowering donors with self-service tools — from appointment scheduling to educational resources on the donation lifecycle.",
     problem:
-      "Exploring the capabilities of deep learning in computer vision and understanding how CNN architectures can be applied to real-world image recognition problems.",
+      "Blood banks in Ethiopia face persistent donor drop-off due to a lack of digital engagement channels. Donors had no way to schedule appointments online, access reliable information about the donation process, or receive timely follow-up communication — resulting in low retention and unpredictable blood supply.",
     approach:
-      "Building the model from scratch using TensorFlow and Keras, experimenting with different CNN architectures, and training on custom datasets to achieve high accuracy.",
+      "Built a React-based donor portal backed by a Node.js/Express REST API and MongoDB. The system enables online appointment booking, a structured donor registration flow, and a resource hub covering blood types, donation eligibility, and post-donation care. SMS notifications keep donors informed and motivated at every step of their journey.",
     highlights: [
-      "Custom CNN architecture design",
-      "Transfer learning with pre-trained models",
-      "Real-time image prediction",
+      "Online appointment scheduling with real-time slot availability",
+      "Donor registration with eligibility screening and profile management",
+      "Educational content hub — blood types, donation process, FAQs",
+      "SMS confirmation on registration and appointment booking",
+      "Post-donation appreciation messages sent automatically via SMS",
+      "Birthday SMS reminders encouraging annual donation cycles",
+      "Responsive design accessible on any device",
+    ],
+  },
+  {
+    slug: "blood-bank-management-system",
+    title: "Blood Bank — Management System",
+    tagline: "An internal office platform for managing donors, hospitals, blood inventory, and compliance.",
+    year: "2025",
+    role: "Full-Stack Development",
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "REST API", "SMS Integration"],
+    cover: "/assets/image.png",
+    gallery: ["/assets/image.png", "/assets/image1.png"],
+    github: "",
+    live: "",
+    overview:
+      "A full-featured blood bank management system built for internal staff — providing end-to-end control over donor records, hospital coordination, blood inventory tracking, and automated compliance workflows.",
+    problem:
+      "Internal blood bank operations were managed manually through spreadsheets and phone calls, leading to inventory mismanagement, expired blood units going unnoticed, and slow coordination with hospitals during critical shortages.",
+    approach:
+      "Developed a role-based admin dashboard with React and a Node.js/Express/MongoDB backend. The system centralises donor management, hospital request handling, and live inventory tracking. Automated alerts notify staff of units approaching expiry, while integrated SMS workflows keep donors engaged year-round — from registration confirmations to birthday donation nudges.",
+    highlights: [
+      "Role-based access control for staff, managers, and administrators",
+      "Donor lifecycle management — registration, donation history, eligibility status",
+      "Hospital management — requests, fulfillment tracking, and communication log",
+      "Blood inventory dashboard with real-time stock levels by blood type",
+      "Automated expiry date notifications to prevent waste",
+      "Integrated SMS engine — registration, post-donation thanks, and birthday reminders",
+      "Audit trail for all inventory transactions and donor interactions",
+      "Reporting and analytics for donation trends and inventory forecasting",
     ],
     upcoming: true,
   },

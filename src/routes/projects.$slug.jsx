@@ -139,14 +139,14 @@ function ProjectDetail() {
       <section className="section">
         <div className="container">
           <div className="eyebrow">Highlights</div>
-          <div style={{ marginTop: "40px", display: "grid", gap: "20px" }}>
+          <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "20px" }}>
             {project.highlights.map(function (h, i) {
               return (
                 <div key={h} className="card">
                   <span className="eyebrow accent-text">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p style={{ marginTop: "16px", fontSize: "18px", fontWeight: 600, letterSpacing: "-0.02em" }}>
+                  <p style={{ marginTop: "16px", fontSize: "16px", fontWeight: 600, letterSpacing: "-0.02em" }}>
                     {h}
                   </p>
                 </div>
@@ -155,6 +155,28 @@ function ProjectDetail() {
           </div>
         </div>
       </section>
+
+      {/* Gallery — only shown when project has multiple images */}
+      {project.gallery && project.gallery.length > 1 && (
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="eyebrow" style={{ marginBottom: "32px" }}>Gallery</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
+              {project.gallery.map(function (src, i) {
+                return (
+                  <div key={i} style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid var(--border)", background: "var(--muted)" }}>
+                    <img
+                      src={src}
+                      alt={project.title + " screenshot " + (i + 1)}
+                      style={{ width: "100%", display: "block", objectFit: "contain" }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Next */}
       <section className="section">
