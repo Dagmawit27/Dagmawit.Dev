@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { projects } from "../lib/projects";
 
@@ -21,6 +21,7 @@ export const Route = createFileRoute("/projects")({
 function ProjectsIndex() {
   return (
     <div>
+       <Outlet />
       <section className="section-header">
         <div className="container">
           <div className="eyebrow">Selected work</div>

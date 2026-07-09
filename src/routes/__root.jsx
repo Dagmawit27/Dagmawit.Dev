@@ -4,12 +4,8 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
-
-import appCss from "../styles/plain.css?url";
 import { ArrowUpRight } from "lucide-react";
 
 function NotFoundComponent() {
@@ -25,7 +21,7 @@ function NotFoundComponent() {
         </p>
         <div style={{ marginTop: "32px" }}>
           <Link to="/" className="header-cta">
-            Return home ↗
+            Return home <ArrowUpRight size={14} />
           </Link>
         </div>
       </div>
@@ -34,7 +30,6 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }) {
-  console.error(error);
   const router = useRouter();
   useEffect(() => {
     console.error(error);
@@ -51,10 +46,7 @@ function ErrorComponent({ error, reset }) {
           Try again, or head back to the homepage.
         </p>
         <div style={{ marginTop: "32px", display: "flex", justifyContent: "center", gap: "12px" }}>
-          <button
-            onClick={() => { router.invalidate(); reset(); }}
-            className="header-cta"
-          >
+          <button onClick={() => { router.invalidate(); reset(); }} className="header-cta">
             Try again
           </button>
           <a href="/" className="btn btn-secondary">Go home</a>
@@ -65,50 +57,10 @@ function ErrorComponent({ error, reset }) {
 }
 
 export const Route = createRootRouteWithContext()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dagmawit Mesfin — Web Developer & Software Engineer" },
-      {
-        name: "description",
-        content:
-          "Dagmawit Mesfin builds modern, production-ready websites and interfaces — clean code, considered design, senior craft.",
-      },
-      { name: "author", content: "Dagmawit Mesfin" },
-      { property: "og:title", content: "Dagmawit Mesfin — Web Developer & Software Engineer" },
-      {
-        property: "og:description",
-        content:
-          "Dagmawit Mesfin builds modern, production-ready websites and interfaces — clean code, considered design, senior craft.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function LogoMark() {
   return (
@@ -214,4 +166,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

@@ -92,15 +92,44 @@ function ProjectDetail() {
         </div>
       </section>
 
-      {/* Cover */}
+      {/* Cover + thumbnail strip */}
       <section className="section">
         <div className="container">
-          <div className="card" style={{ overflow: "hidden", padding: "8px" }}>
+          <div className="card" style={{ overflow: "hidden", padding: "16px" }}>
+            {/* main cover */}
             <img
               src={project.cover}
               alt={project.title}
-              style={{ width: "100%", maxHeight: "640px", borderRadius: "12px", objectFit: "contain" }}
+              style={{ width: "100%", maxHeight: "640px", borderRadius: "12px", objectFit: "contain", display: "block" }}
             />
+            {/* thumbnail row — only when gallery images exist */}
+            {project.gallery && project.gallery.length > 0 && (
+              <div style={{
+                display: "flex",
+                gap: "10px",
+                marginTop: "12px",
+                justifyContent: "flex-end",
+                flexWrap: "wrap",
+              }}>
+                {project.gallery.map(function (src, i) {
+                  return (
+                    <img
+                      key={i}
+                      src={src}
+                      alt={project.title + " view " + (i + 1)}
+                      style={{
+                        height: "80px",
+                        width: "120px",
+                        objectFit: "cover",
+                        borderRadius: "8px",
+                        border: "1px solid var(--border)",
+                        background: "var(--muted)",
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </section>
