@@ -106,7 +106,7 @@ function About() {
               maxHeight: "420px",
             }}>
               <img
-                src="https://dagmawit27.github.io/Dagmawit.Developer/assets/picture-black2-KdI19e1c.png"
+                src="/assets/myPicture.png"
                 alt="Portrait of Dagmawit Mesfin"
                 style={{
                   width: "100%",
