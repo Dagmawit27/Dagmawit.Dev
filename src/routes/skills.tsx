@@ -57,19 +57,18 @@ const stages = [
 function Skills() {
   return (
     <div>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-          <div className="eyebrow">§ The Journey</div>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-7xl">
-            Every project walks the same path — from spark to launch.
-          </h1>
-          <p className="mt-8 max-w-xl text-base text-muted-foreground md:text-lg">
-            A traced route through the disciplines I practise. Follow the line.
-          </p>
-        </div>
+      <section className="mx-auto max-w-7xl px-6 pt-20 pb-14 md:px-10 md:pt-28">
+        <div className="eyebrow">The journey</div>
+        <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.03] tracking-tight text-foreground md:text-7xl">
+          Every project walks the same path —{" "}
+          <span className="accent-text">from spark to launch.</span>
+        </h1>
+        <p className="mt-8 max-w-xl text-base text-muted-foreground md:text-lg">
+          A traced route through the disciplines I practise. Follow the line.
+        </p>
       </section>
 
-      <section className="relative mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+      <section className="relative mx-auto max-w-6xl px-6 pb-32 md:px-10">
         {/* SVG winding path */}
         <svg
           className="pointer-events-none absolute left-1/2 top-0 -z-0 h-full w-[560px] -translate-x-1/2"
@@ -83,11 +82,11 @@ function Skills() {
             stroke="currentColor"
             strokeWidth="1.5"
             strokeDasharray="6 8"
-            className="path-draw text-foreground/40"
+            className="path-draw text-[var(--purple)]/50"
           />
         </svg>
 
-        <ol className="relative z-10 space-y-24">
+        <ol className="relative z-10 space-y-20">
           {stages.map((s, i) => {
             const left = i % 2 === 0;
             const Icon = s.Icon;
@@ -100,23 +99,23 @@ function Skills() {
               >
                 {/* Card */}
                 <div
-                  className={`bg-background/90 border border-border p-8 backdrop-blur-sm ${
-                    left ? "md:mr-16 md:text-right" : "md:ml-16"
+                  className={`card-soft p-6 ${
+                    left ? "md:mr-12 md:text-right" : "md:ml-12"
                   }`}
                 >
                   <div
-                    className={`flex items-baseline gap-4 ${
+                    className={`flex items-center gap-3 ${
                       left ? "md:justify-end" : ""
                     }`}
                   >
-                    <span className="inline-flex h-9 min-w-9 items-center justify-center bg-foreground px-2 font-serif text-lg text-background">
+                    <span className="inline-flex h-8 items-center rounded-full bg-[var(--purple-soft)] px-3 text-xs font-semibold tracking-tight text-[var(--purple)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="font-serif text-3xl text-foreground md:text-4xl">
+                    <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
                       {s.title}
                     </h3>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
                     {s.desc}
                   </p>
                 </div>
@@ -125,11 +124,11 @@ function Skills() {
                 <div className="flex justify-center">
                   <div className="relative">
                     <div
-                      className="absolute inset-0 -m-2 rounded-full opacity-20 blur-md"
-                      style={{ background: "var(--accent)" }}
+                      className="absolute inset-0 -m-3 rounded-full opacity-40 blur-lg"
+                      style={{ background: "var(--purple)" }}
                     />
-                    <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-foreground bg-background">
-                      <Icon className="h-9 w-9 text-foreground" strokeWidth={1.25} />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-border bg-background shadow-sm">
+                      <Icon className="h-8 w-8 text-[var(--purple)]" strokeWidth={1.5} />
                     </div>
                   </div>
                 </div>
