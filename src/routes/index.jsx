@@ -47,7 +47,7 @@ var PILLARS = [
 var SERVICES = [
   "Landing Page Sprint",
   "Web Application Build",
-  "Frontend Engineering",
+  "Full-Stack Engineering",
   "Portfolio Projects",
   "Ongoing Maintenance",
 ];
@@ -140,9 +140,9 @@ function Index() {
         <div className="container" style={{ padding: "40px 24px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0", justifyContent: "space-between" }}>
             {[
-              { n: "5+",  l: "Projects shipped" },
+              { n: "1+",  l: "Projects shipped" },
               { n: "96%", l: "Client satisfaction" },
-              { n: "3+",  l: "Years building web" },
+              { n: "2+",  l: "Years building web" },
               { n: "24h", l: "Reply guarantee" },
             ].map(function (s, i, arr) {
               return (

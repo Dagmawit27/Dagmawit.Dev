@@ -156,8 +156,8 @@ function ProjectDetail() {
         </div>
       </section>
 
-      {/* Gallery — only shown when project has multiple images */}
-      {project.gallery && project.gallery.length > 1 && (
+      {/* Gallery — only shown when project has gallery images */}
+      {project.gallery && project.gallery.length > 0 && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="container">
             <div className="eyebrow" style={{ marginBottom: "32px" }}>Gallery</div>
