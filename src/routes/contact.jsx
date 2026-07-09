@@ -28,9 +28,9 @@ var channels = [
   {
     Icon: Phone,
     label: "Phone",
-    value: "0912345678",
+    value: "0901781860",
     action: "Call now",
-    href: "tel:0912345678",
+    href: "tel:0901781860",
   },
   {
     Icon: MessageCircle,
@@ -42,14 +42,14 @@ var channels = [
   {
     Icon: Video,
     label: "WhatsApp Video",
-    value: "0912345678",
+    value: "0969392729",
     action: "Video call",
-    href: "https://wa.me/0912345678",
+    href: "https://wa.me/0969392729",
   },
   {
     Icon: Mail,
     label: "SMS Message",
-    value: "0912345678",
+    value: "0901781860",
     action: "Message now",
     href: "sms:0912345678",
   },
