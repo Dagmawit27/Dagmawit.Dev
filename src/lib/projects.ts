@@ -76,7 +76,7 @@ export const projects: Project[] = [
       "Audit trail for all inventory transactions and donor interactions",
       "Reporting and analytics for donation trends and inventory forecasting",
     ],
-    upcoming: false,
+    upcoming: true,
   },
 ];
 

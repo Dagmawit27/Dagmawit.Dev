@@ -205,7 +205,7 @@ function ProjectsIndex() {
 
                   {/* links */}
                   <div className="project-links">
-                    {!p.upcoming && (
+                    
                       <Link
                         to="/projects/$slug"
                         params={{ slug: p.slug }}
@@ -218,8 +218,8 @@ function ProjectsIndex() {
                       >
                         View case study <ArrowUpRight size={14} />
                       </Link>
-                    )}
-                    {p.github && !p.upcoming && (
+                      
+                    {p.github && (
                       <a
                         href={p.github}
                         target="_blank"
@@ -234,7 +234,7 @@ function ProjectsIndex() {
                         <Github size={14} /> GitHub
                       </a>
                     )}
-                    {p.live && !p.upcoming && (
+                    {p.live && (
                       <a
                         href={p.live}
                         target="_blank"
@@ -254,7 +254,7 @@ function ProjectsIndex() {
                         className="project-link"
                         style={{ color: "var(--purple)" }}
                       >
-                        In Progress — Coming Soon
+                        In Progress — Coming Soon 
                       </span>
                     )}
                   </div>
