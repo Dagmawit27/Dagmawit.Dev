@@ -13,6 +13,7 @@ export type Project = {
   problem: string;
   approach: string;
   highlights: string[];
+  upcoming?: boolean;
 };
 
 const BASE = "https://dagmawit27.github.io/Dagmawit.Developer/assets";
@@ -86,6 +87,30 @@ export const projects: Project[] = [
       "Deal strip with keyboard-navigable slides",
       "Optimized imagery under 100kb per item",
     ],
+  },
+  {
+    slug: "ml-image-classifier",
+    title: "ML Image Classifier",
+    tagline: "Deep learning model for image classification using CNN.",
+    year: "2025",
+    role: "Design & Development",
+    stack: ["Python", "TensorFlow", "Keras", "CNN", "Deep Learning"],
+    cover: `${BASE}/portfolio-1-DdRJO4gW.jpg`,
+    gallery: [`${BASE}/portfolio-1-DdRJO4gW.jpg`],
+    github: "",
+    live: "",
+    overview:
+      "A machine learning project focused on building and training convolutional neural networks (CNN) for image classification tasks. Currently in development.",
+    problem:
+      "Exploring the capabilities of deep learning in computer vision and understanding how CNN architectures can be applied to real-world image recognition problems.",
+    approach:
+      "Building the model from scratch using TensorFlow and Keras, experimenting with different CNN architectures, and training on custom datasets to achieve high accuracy.",
+    highlights: [
+      "Custom CNN architecture design",
+      "Transfer learning with pre-trained models",
+      "Real-time image prediction",
+    ],
+    upcoming: true,
   },
 ];
 
