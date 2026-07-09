@@ -103,20 +103,20 @@ function About() {
               overflow: "hidden",
               border: "1px solid var(--border)",
               boxShadow: "0 8px 40px rgba(15,23,42,0.10)",
-              maxHeight: "420px",
+              background: "var(--muted)",
+              maxWidth: "340px",
+              justifySelf: "center",
             }}>
               <img
                 src="/assets/myPicture.png"
                 alt="Portrait of Dagmawit Mesfin"
                 style={{
                   width: "100%",
-                  height: "420px",
                   display: "block",
-                  objectFit: "cover",
-                  objectPosition: "top",
+                  objectFit: "contain",
                   transition: "transform 0.5s ease",
                 }}
-                onMouseEnter={function (e) { e.currentTarget.style.transform = "scale(1.03)"; }}
+                onMouseEnter={function (e) { e.currentTarget.style.transform = "scale(1.01)"; }}
                 onMouseLeave={function (e) { e.currentTarget.style.transform = "scale(1)"; }}
               />
             </div>
