@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 import { getProject, projects } from "../lib/projects";
 
 export const Route = createFileRoute("/projects/$slug")({
@@ -41,85 +42,85 @@ function ProjectDetail() {
   return (
     <div>
       {/* Header */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
-          <Link
-            to="/projects"
-            className="inline-flex items-center text-sm text-muted-foreground transition hover:text-foreground"
-          >
-            ← All work
-          </Link>
-          <div className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
-            <div>
-              <div className="eyebrow">Case Study Nº {String(idx + 1).padStart(2, "0")}</div>
-              <h1 className="mt-6 font-serif text-5xl leading-[1.05] text-foreground md:text-7xl">
-                {project.title}
-              </h1>
-              <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-                {project.tagline}
-              </p>
+      <section className="mx-auto max-w-7xl px-6 pt-14 pb-10 md:px-10 md:pt-20">
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition hover:text-foreground"
+        >
+          ← All work
+        </Link>
+        <div className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
+          <div>
+            <div className="eyebrow">
+              Case Study Nº {String(idx + 1).padStart(2, "0")}
             </div>
-            <dl className="grid grid-cols-2 gap-y-6 self-end border-t border-border pt-8 text-sm">
-              <dt className="eyebrow">Year</dt>
-              <dd className="text-foreground">{project.year}</dd>
-              <dt className="eyebrow">Role</dt>
-              <dd className="text-foreground">{project.role}</dd>
-              <dt className="eyebrow">Stack</dt>
-              <dd className="text-foreground">{project.stack.join(", ")}</dd>
-              <dt className="eyebrow">Links</dt>
-              <dd className="flex flex-col gap-1">
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-foreground underline-offset-4 hover:underline"
-                >
-                  Live site ↗
-                </a>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-foreground underline-offset-4 hover:underline"
-                >
-                  Source ↗
-                </a>
-              </dd>
-            </dl>
+            <h1 className="mt-6 text-5xl font-semibold leading-[1.03] tracking-tight text-foreground md:text-7xl">
+              {project.title}
+            </h1>
+            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+              {project.tagline}
+            </p>
           </div>
+          <dl className="card-soft grid grid-cols-2 gap-y-5 self-end p-6 text-sm">
+            <dt className="eyebrow">Year</dt>
+            <dd className="text-foreground">{project.year}</dd>
+            <dt className="eyebrow">Role</dt>
+            <dd className="text-foreground">{project.role}</dd>
+            <dt className="eyebrow">Stack</dt>
+            <dd className="text-foreground">{project.stack.join(", ")}</dd>
+            <dt className="eyebrow">Links</dt>
+            <dd className="flex flex-col gap-1.5">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-foreground hover:accent-text"
+              >
+                Live site <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-foreground hover:accent-text"
+              >
+                Source <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </dd>
+          </dl>
         </div>
       </section>
 
       {/* Cover */}
-      <section className="mx-auto max-w-7xl px-6 pt-16 md:px-10">
-        <div className="bg-soft">
+      <section className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="card-soft overflow-hidden p-2">
           <img
             src={project.cover}
             alt={project.title}
-            className="h-auto max-h-[640px] w-full object-contain"
+            className="h-auto max-h-[640px] w-full rounded-xl object-contain"
           />
         </div>
       </section>
 
       {/* Overview */}
       <section className="mx-auto max-w-3xl px-6 py-24 md:px-10">
-        <div className="eyebrow">§ Overview</div>
-        <p className="mt-6 font-serif text-3xl leading-snug text-foreground md:text-4xl">
+        <div className="eyebrow">Overview</div>
+        <p className="mt-6 text-2xl font-semibold leading-snug tracking-tight text-foreground md:text-4xl">
           {project.overview}
         </p>
       </section>
 
       {/* Problem / Approach */}
-      <section className="mx-auto max-w-7xl border-t border-b border-border px-6 py-24 md:px-10">
-        <div className="grid gap-16 md:grid-cols-2">
+      <section className="border-y border-border bg-muted/50">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-2 md:px-10">
           <div>
-            <div className="eyebrow">§ The Problem</div>
+            <div className="eyebrow">The problem</div>
             <p className="mt-6 text-base leading-relaxed text-foreground md:text-lg">
               {project.problem}
             </p>
           </div>
           <div>
-            <div className="eyebrow">§ The Approach</div>
+            <div className="eyebrow">The approach</div>
             <p className="mt-6 text-base leading-relaxed text-foreground md:text-lg">
               {project.approach}
             </p>
@@ -129,36 +130,41 @@ function ProjectDetail() {
 
       {/* Highlights */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-        <div className="eyebrow">§ Highlights</div>
-        <ol className="mt-8 divide-y divide-border border-t border-b border-border">
+        <div className="eyebrow">Highlights</div>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {project.highlights.map((h: string, i: number) => (
-            <li key={h} className="flex items-baseline gap-6 py-6">
-              <span className="eyebrow w-16">{String(i + 1).padStart(2, "0")}</span>
-              <span className="font-serif text-2xl text-foreground md:text-3xl">{h}</span>
-            </li>
+            <div key={h} className="card-soft p-6">
+              <span className="text-xs font-semibold tracking-[0.18em] accent-text">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="mt-4 text-lg font-semibold tracking-tight text-foreground">
+                {h}
+              </p>
+            </div>
           ))}
-        </ol>
+        </div>
       </section>
 
       {/* Next */}
-      <section className="border-t border-border">
+      <section className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
         <Link
           to="/projects/$slug"
           params={{ slug: next.slug }}
-          className="group block"
+          className="card-soft group flex items-center justify-between gap-6 p-6 transition hover:-translate-y-0.5"
         >
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-16 md:px-10">
-            <div>
-              <div className="eyebrow">Next case study</div>
-              <div className="mt-3 font-serif text-4xl text-foreground md:text-5xl">
-                {next.title} →
-              </div>
+          <div>
+            <div className="eyebrow">Next case study</div>
+            <div className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              {next.title}
             </div>
+          </div>
+          <div className="flex items-center gap-4">
             <img
               src={next.cover}
               alt={next.title}
-              className="hidden h-32 w-48 object-cover md:block"
+              className="hidden h-24 w-36 rounded-lg object-cover md:block"
             />
+            <ArrowUpRight className="h-6 w-6 text-foreground" />
           </div>
         </Link>
       </section>
@@ -172,7 +178,7 @@ function ProjectError({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="mx-auto max-w-xl px-6 py-32 text-center">
       <div className="eyebrow">Something broke</div>
-      <h1 className="mt-4 font-serif text-4xl text-foreground">
+      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground">
         This case study didn't load.
       </h1>
       <button
@@ -180,7 +186,7 @@ function ProjectError({ error, reset }: { error: Error; reset: () => void }) {
           router.invalidate();
           reset();
         }}
-        className="mt-8 border-b border-foreground pb-0.5 text-sm text-foreground"
+        className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-85"
       >
         Try again
       </button>
@@ -193,12 +199,12 @@ function ProjectNotFound() {
   return (
     <div className="mx-auto max-w-xl px-6 py-32 text-center">
       <div className="eyebrow">Nothing filed under that name</div>
-      <h1 className="mt-4 font-serif text-4xl text-foreground">
+      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground">
         No case study named "{slug}".
       </h1>
       <Link
         to="/projects"
-        className="mt-8 inline-flex border-b border-foreground pb-0.5 text-sm text-foreground"
+        className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-muted"
       >
         ← Back to all work
       </Link>

@@ -1,25 +1,25 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@fontsource/instrument-serif";
 @import "@fontsource-variable/inter";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Paper & Ink — editorial, formal.
- * Palette: #f5f3ee paper, #e8e4dd soft, #2d2d2d ink, #0d0d0d deep ink.
- * Accent kept minimal; used for S-curve nodes and hover states only.
+ * Ethix-inspired — modern production engineering studio.
+ * Palette: near-black navy ink on bright paper, vivid electric purple accent.
+ * Type: Inter Variable tuned tight and heavy to feel Geist-adjacent.
  */
 
 @theme inline {
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -41,17 +41,20 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ink: var(--ink);
-  --color-paper: var(--paper);
-  --color-soft: var(--soft);
+  --color-surface: var(--surface);
+  --color-purple: var(--purple);
+  --color-purple-soft: var(--purple-soft);
 }
 
 :root {
-  --radius: 0.25rem;
+  --radius: 0.75rem;
 
-  --paper: oklch(0.965 0.005 85);       /* #f5f3ee */
-  --soft:  oklch(0.925 0.008 78);       /* #e8e4dd */
-  --ink:   oklch(0.28 0 0);             /* #2d2d2d */
-  --deep-ink: oklch(0.14 0 0);          /* #0d0d0d */
+  --paper:      oklch(1 0 0);
+  --surface:    oklch(0.985 0.004 270);   /* very light lavender-white for panels */
+  --ink:        oklch(0.18 0.02 265);     /* near-black navy */
+  --deep-ink:   oklch(0.13 0.02 265);
+  --purple:     oklch(0.56 0.24 292);     /* electric violet, ~#7c3aed */
+  --purple-soft:oklch(0.94 0.06 292);
 
   --background: var(--paper);
   --foreground: var(--deep-ink);
@@ -61,37 +64,37 @@
   --popover-foreground: var(--deep-ink);
   --primary: var(--deep-ink);
   --primary-foreground: var(--paper);
-  --secondary: var(--soft);
+  --secondary: var(--surface);
   --secondary-foreground: var(--deep-ink);
-  --muted: var(--soft);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.55 0.13 45);        /* muted terracotta accent */
+  --muted: var(--surface);
+  --muted-foreground: oklch(0.52 0.02 265);
+  --accent: var(--purple);
   --accent-foreground: var(--paper);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: var(--paper);
-  --border: oklch(0.86 0.01 78);
-  --input: oklch(0.86 0.01 78);
-  --ring: oklch(0.28 0 0);
+  --border: oklch(0.93 0.006 265);
+  --input: oklch(0.93 0.006 265);
+  --ring: var(--purple);
 }
 
 .dark {
   --background: var(--deep-ink);
   --foreground: var(--paper);
-  --card: oklch(0.20 0 0);
+  --card: oklch(0.20 0.02 265);
   --card-foreground: var(--paper);
-  --popover: oklch(0.20 0 0);
+  --popover: oklch(0.20 0.02 265);
   --popover-foreground: var(--paper);
   --primary: var(--paper);
   --primary-foreground: var(--deep-ink);
-  --secondary: oklch(0.24 0 0);
+  --secondary: oklch(0.24 0.02 265);
   --secondary-foreground: var(--paper);
-  --muted: oklch(0.24 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.65 0.13 45);
-  --accent-foreground: var(--deep-ink);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--paper);
+  --muted: oklch(0.24 0.02 265);
+  --muted-foreground: oklch(0.72 0.02 265);
+  --accent: var(--purple);
+  --accent-foreground: var(--paper);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: var(--purple);
 }
 
 @layer base {
@@ -107,33 +110,55 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "cv11", "ss01", "ss03";
     -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.011em;
   }
 
-  h1, h2, h3, h4, .font-serif {
-    font-family: var(--font-serif);
-    letter-spacing: -0.01em;
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.035em;
+    font-weight: 600;
   }
 
   .eyebrow {
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     font-size: 0.72rem;
     font-weight: 500;
     color: var(--muted-foreground);
   }
 
-  .rule {
-    border-top: 1px solid var(--color-border);
+  .accent-text {
+    color: var(--purple);
   }
 }
 
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-foreground);
+}
+
+@utility card-soft {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02), 0 10px 30px -18px rgba(15, 23, 42, 0.12);
+}
+
 @utility path-draw {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
-  animation: drawPath 2.4s ease-out forwards;
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  animation: drawPath 2.6s ease-out forwards;
 }
 
 @keyframes drawPath {
