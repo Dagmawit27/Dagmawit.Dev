@@ -1,28 +1,21 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-} from "@tanstack/react-router";
-import { useEffect } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
 function NotFoundComponent() {
   return (
     <div style={{ display: "flex", minHeight: "100vh", alignItems: "center", justifyContent: "center", padding: "0 16px" }}>
       <div style={{ maxWidth: "28rem", textAlign: "center" }}>
         <div className="eyebrow" style={{ marginBottom: "24px" }}>Error 404</div>
-        <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.04em" }}>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.04em" }}>
           Page not <span className="accent-text">found.</span>
         </h1>
         <p style={{ marginTop: "16px", fontSize: "14px", color: "var(--muted-foreground)" }}>
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div style={{ marginTop: "32px" }}>
-          <Link to="/" className="header-cta">
-            Return home <ArrowUpRight size={14} />
-          </Link>
+          <Link to="/" className="header-cta">Return home <ArrowUpRight size={14} /></Link>
         </div>
       </div>
     </div>
@@ -31,10 +24,7 @@ function NotFoundComponent() {
 
 function ErrorComponent({ error, reset }) {
   const router = useRouter();
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+  useEffect(() => { console.error(error); }, [error]);
   return (
     <div style={{ display: "flex", minHeight: "100vh", alignItems: "center", justifyContent: "center", padding: "0 16px" }}>
       <div style={{ maxWidth: "28rem", textAlign: "center" }}>
@@ -42,13 +32,8 @@ function ErrorComponent({ error, reset }) {
         <h1 style={{ fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.04em" }}>
           This page didn't <span className="accent-text">load.</span>
         </h1>
-        <p style={{ marginTop: "16px", fontSize: "14px", color: "var(--muted-foreground)" }}>
-          Try again, or head back to the homepage.
-        </p>
         <div style={{ marginTop: "32px", display: "flex", justifyContent: "center", gap: "12px" }}>
-          <button onClick={() => { router.invalidate(); reset(); }} className="header-cta">
-            Try again
-          </button>
+          <button onClick={() => { router.invalidate(); reset(); }} className="header-cta">Try again</button>
           <a href="/" className="btn btn-secondary">Go home</a>
         </div>
       </div>
@@ -72,6 +57,7 @@ function LogoMark() {
 }
 
 function SiteHeader() {
+  const [open, setOpen] = useState(false);
   const navItems = [
     { to: "/projects", label: "Work" },
     { to: "/skills", label: "Skills" },
@@ -81,31 +67,45 @@ function SiteHeader() {
 
   return (
     <header className="header">
-      <div className="container header-content">
+      <div className="container">
         <div className="header-top">
-          <Link to="/" className="logo">
+          <Link to="/" className="logo" onClick={() => setOpen(false)}>
             <LogoMark />
             <div className="logo-text">
               <span className="logo-name">DAGMAWIT</span>
               <span className="logo-subtitle">Web Development</span>
             </div>
           </Link>
+
           <nav className="nav">
             {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
+              <Link key={item.to} to={item.to}
                 activeProps={{ className: "nav-link active" }}
-                inactiveProps={{ className: "nav-link" }}
-              >
+                inactiveProps={{ className: "nav-link" }}>
                 {item.label}
               </Link>
             ))}
           </nav>
-          <Link to="/contact" className="header-cta">
+
+          <Link to="/contact" className="header-cta desktop-cta">
             Let's Talk <ArrowUpRight size={14} />
           </Link>
+
+          <button className="mobile-menu-btn" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
+
+        {open && (
+          <nav className="mobile-nav">
+            {navItems.map((item) => (
+              <Link key={item.to} to={item.to} onClick={() => setOpen(false)}>{item.label}</Link>
+            ))}
+            <Link to="/contact" onClick={() => setOpen(false)} style={{ color: "var(--purple)", fontWeight: 600 }}>
+              Let's Talk →
+            </Link>
+          </nav>
+        )}
       </div>
     </header>
   );
@@ -139,7 +139,7 @@ function SiteFooter() {
           <ul className="footer-links">
             <li><a href="https://github.com/Dagmawit27" target="_blank" rel="noreferrer" className="footer-link">GitHub <ArrowUpRight size={12} style={{ display: "inline" }} /></a></li>
             <li><a href="https://t.me/Dagi_Eskedar" target="_blank" rel="noreferrer" className="footer-link">Telegram <ArrowUpRight size={12} style={{ display: "inline" }} /></a></li>
-            <li><a href="tel:0912345678" className="footer-link">Phone <ArrowUpRight size={12} style={{ display: "inline" }} /></a></li>
+            <li><a href="tel:0901781860" className="footer-link">Phone <ArrowUpRight size={12} style={{ display: "inline" }} /></a></li>
           </ul>
         </div>
       </div>
@@ -153,14 +153,11 @@ function SiteFooter() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-
   return (
     <QueryClientProvider client={queryClient}>
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="app-shell">
         <SiteHeader />
-        <main className="main">
-          <Outlet />
-        </main>
+        <main className="main"><Outlet /></main>
         <SiteFooter />
       </div>
     </QueryClientProvider>

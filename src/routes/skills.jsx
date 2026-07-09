@@ -155,62 +155,40 @@ function Skills() {
               {stages.map(function (s, i) {
                 var isLeft = i % 2 === 0;
                 return (
-                  <li
-                    key={s.title}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 80px 1fr",
-                      alignItems: "center",
-                      gap: "24px",
-                      marginBottom: i < stages.length - 1 ? "64px" : "0",
-                    }}
-                  >
+                  <li key={s.title} className={"skill-row" + (!isLeft ? " even" : "")}>
                     {/* Left card or spacer */}
-                    {isLeft ? (
-                      <div className="card" style={{ padding: "24px", textAlign: "right" }}>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "10px", marginBottom: "12px" }}>
-                          <h3 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>{s.title}</h3>
-                          <span className="skill-number">{String(i + 1).padStart(2, "0")}</span>
+                    <div className="skill-row-left">
+                      {isLeft ? (
+                        <div className="card skill-card-left">
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "10px", marginBottom: "10px" }}>
+                            <h3 style={{ fontSize: "20px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>{s.title}</h3>
+                            <span className="skill-number">{String(i + 1).padStart(2, "0")}</span>
+                          </div>
+                          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>{s.desc}</p>
                         </div>
-                        <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>{s.desc}</p>
-                      </div>
-                    ) : (
-                      <div />
-                    )}
+                      ) : <div />}
+                    </div>
 
-                    {/* Center icon node — measured by the SVG path builder */}
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <div
-                        data-skill-node
-                        style={{
-                          position: "relative",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          width: "72px", height: "72px",
-                          borderRadius: "16px",
-                          border: "2px solid var(--border)",
-                          background: "var(--background)",
-                          boxShadow: "0 2px 16px rgba(139,92,246,0.14)",
-                        }}>
-                        <div style={{
-                          position: "absolute", inset: "-8px", borderRadius: "50%",
-                          background: "var(--purple)", opacity: 0.12, filter: "blur(10px)",
-                        }} />
+                    {/* Center icon node */}
+                    <div className="skill-row-center skill-node">
+                      <div data-skill-node style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: "72px", height: "72px", borderRadius: "16px", border: "2px solid var(--border)", background: "var(--background)", boxShadow: "0 2px 16px rgba(139,92,246,0.14)" }}>
+                        <div style={{ position: "absolute", inset: "-8px", borderRadius: "50%", background: "var(--purple)", opacity: 0.12, filter: "blur(10px)" }} />
                         <s.Icon size={28} style={{ color: "var(--purple)", position: "relative" }} />
                       </div>
                     </div>
 
                     {/* Right card or spacer */}
-                    {!isLeft ? (
-                      <div className="card" style={{ padding: "24px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                          <span className="skill-number">{String(i + 1).padStart(2, "0")}</span>
-                          <h3 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>{s.title}</h3>
+                    <div className="skill-row-right">
+                      {!isLeft ? (
+                        <div className="card skill-card-right">
+                          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+                            <span className="skill-number">{String(i + 1).padStart(2, "0")}</span>
+                            <h3 style={{ fontSize: "20px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>{s.title}</h3>
+                          </div>
+                          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>{s.desc}</p>
                         </div>
-                        <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>{s.desc}</p>
-                      </div>
-                    ) : (
-                      <div />
-                    )}
+                      ) : <div />}
+                    </div>
                   </li>
                 );
               })}
@@ -219,82 +197,37 @@ function Skills() {
         </div>
       </section>
 
-      {/* NOW LEARNING — continues the path, white card centered */}
+      {/* NOW LEARNING */}
       <section style={{ paddingBottom: "0" }}>
         <div className="container">
           <div style={{ position: "relative" }}>
-
-            {/* connector line from last node down to first card */}
-            <div style={{
-              width: "2px", height: "64px",
-              background: "linear-gradient(to bottom, var(--purple), transparent)",
-              opacity: 0.3, margin: "0 auto",
-            }} />
-
-            {/* ML / Deep Learning card */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr minmax(0, 420px) 1fr", gap: "24px", alignItems: "center" }}>
-              <div />
-              <div
-                className="card"
-                style={{
-                  padding: "36px 32px", textAlign: "center",
-                  border: "2px dashed var(--border)", background: "var(--background)",
-                  animation: "nowLearnPulse 3s ease-in-out infinite",
-                }}
-              >
+            <div className="now-learning-connector" style={{ background: "linear-gradient(to bottom, var(--purple), transparent)" }} />
+            <div className="now-learning-wrapper">
+              <div className="now-learning-spacer" />
+              <div className="card now-learning-card">
                 <div className="eyebrow" style={{ marginBottom: "12px" }}>Now learning</div>
-                <h3 style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.03em", margin: "0 0 12px", color: "var(--foreground)" }}>
-                  Machine Learning / Deep Learning
-                </h3>
-                <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>
-                  CNN · RNN · Neural Networks · Computer Vision · NLP
-                </p>
+                <h3 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.03em", margin: "0 0 10px", color: "var(--foreground)" }}>Machine Learning / Deep Learning</h3>
+                <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>CNN · RNN · Neural Networks · Computer Vision · NLP</p>
               </div>
-              <div />
+              <div className="now-learning-spacer" />
             </div>
 
-            {/* connector between the two cards */}
-            <div style={{
-              width: "2px", height: "64px",
-              background: "linear-gradient(to bottom, var(--purple), var(--purple))",
-              opacity: 0.2, margin: "0 auto",
-            }} />
+            <div className="now-learning-connector" style={{ background: "var(--purple)", opacity: 0.2 }} />
 
-            {/* DevOps card */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr minmax(0, 420px) 1fr", gap: "24px", alignItems: "center" }}>
-              <div />
-              <div
-                className="card"
-                style={{
-                  padding: "36px 32px", textAlign: "center",
-                  border: "2px dashed var(--border)", background: "var(--background)",
-                  animation: "nowLearnPulse 3s ease-in-out infinite",
-                  animationDelay: "1.5s",
-                }}
-              >
+            <div className="now-learning-wrapper">
+              <div className="now-learning-spacer" />
+              <div className="card now-learning-card" style={{ animationDelay: "1.5s" }}>
                 <div className="eyebrow" style={{ marginBottom: "12px" }}>Now learning</div>
-                <h3 style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.03em", margin: "0 0 12px", color: "var(--foreground)" }}>
-                  DevOps
-                </h3>
-                <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>
-                  Docker · CI/CD · GitHub Actions · Deployment Pipelines
-                </p>
+                <h3 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.03em", margin: "0 0 10px", color: "var(--foreground)" }}>DevOps</h3>
+                <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--muted-foreground)", margin: 0 }}>Docker · CI/CD · GitHub Actions · Deployment Pipelines</p>
               </div>
-              <div />
+              <div className="now-learning-spacer" />
             </div>
-
           </div>
         </div>
-
-        <style>{`
-          @keyframes nowLearnPulse {
-            0%, 100% { transform: scale(1);    box-shadow: 0 2px 16px rgba(139,92,246,0.10); }
-            50%       { transform: scale(1.03); box-shadow: 0 6px 32px rgba(139,92,246,0.22); }
-          }
-        `}</style>
       </section>
 
-      <div style={{ height: "80px" }} />
+      <div style={{ height: "60px" }} />
     </div>
   );
 }

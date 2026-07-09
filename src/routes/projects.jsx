@@ -41,129 +41,36 @@ function ProjectsIndex() {
         <div className="container">
           {projects.map(function (p, i) {
             return (
-              <div
-                key={p.slug}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  minHeight: "480px",
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  border: p.upcoming
-                    ? "2px solid rgba(139,92,246,0.3)"
-                    : "1px solid var(--border)",
-                  marginBottom: "48px",
-                  background: "var(--background)",
-                  boxShadow: "0 2px 24px rgba(15,23,42,0.07)",
-                }}
-              >
-                {/* LEFT — cover image centered with padding */}
-                <div
-                  style={{
-                    position: "relative",
-                    overflow: "hidden",
-                    background: "var(--muted)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "32px",
-                  }}
-                >
+              <div key={p.slug} className={"project-split" + (p.upcoming ? " upcoming" : "")}>
+                {/* LEFT — cover image */}
+                <div className="project-img-col">
                   <img
                     src={p.cover}
                     alt={p.title}
-                    style={{
-                      width: "100%",
-                      maxHeight: "360px",
-                      objectFit: "contain",
-                      borderRadius: "10px",
-                      boxShadow: "0 8px 32px rgba(15,23,42,0.18)",
-                      display: "block",
-                      transition: "transform 0.5s ease",
-                    }}
-                    onMouseEnter={function (e) {
-                      e.currentTarget.style.transform = "scale(1.04)";
-                    }}
-                    onMouseLeave={function (e) {
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
+                    onMouseEnter={function (e) { e.currentTarget.style.transform = "scale(1.04)"; }}
+                    onMouseLeave={function (e) { e.currentTarget.style.transform = "scale(1)"; }}
                   />
-                  {/* number badge */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "20px",
-                      left: "20px",
-                      background: "rgba(0,0,0,0.55)",
-                      backdropFilter: "blur(6px)",
-                      borderRadius: "8px",
-                      padding: "6px 12px",
-                      fontSize: "11px",
-                      fontWeight: 600,
-                      letterSpacing: "0.16em",
-                      color: "#fff",
-                    }}
-                  >
+                  <div style={{ position: "absolute", top: "16px", left: "16px", background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)", borderRadius: "8px", padding: "5px 10px", fontSize: "11px", fontWeight: 600, letterSpacing: "0.16em", color: "#fff" }}>
                     NO. {String(i + 1).padStart(2, "0")}
                   </div>
                   {p.upcoming && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "20px",
-                        right: "20px",
-                      }}
-                    >
+                    <div style={{ position: "absolute", top: "16px", right: "16px" }}>
                       <span className="badge badge-solid">Upcoming</span>
                     </div>
                   )}
                 </div>
 
                 {/* RIGHT — content */}
-                <div
-                  style={{
-                    padding: "40px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
-                >
+                <div className="project-content-col">
                   <div>
-                    {/* year + role */}
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        marginBottom: "20px",
-                      }}
-                    >
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
                       <span className="project-year">{p.year}</span>
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          color: "var(--muted-foreground)",
-                        }}
-                      >
-                        · {p.role}
-                      </span>
+                      <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>· {p.role}</span>
                     </div>
-
-                    <h2 className="project-title" style={{ marginTop: 0 }}>
-                      {p.title}
-                    </h2>
+                    <h2 className="project-title" style={{ marginTop: 0 }}>{p.title}</h2>
                     <p className="project-tagline">{p.tagline}</p>
 
-                    {/* problem / solution */}
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "20px",
-                        marginTop: "24px",
-                        marginBottom: "24px",
-                      }}
-                    >
+                    <div className="project-prob-sol">
                       <div>
                         <h3 className="project-section-title">Problem</h3>
                         <p className="project-section-text">{p.problem}</p>
@@ -174,88 +81,38 @@ function ProjectsIndex() {
                       </div>
                     </div>
 
-                    {/* highlights */}
-                    <div style={{ marginBottom: "20px" }}>
+                    <div style={{ marginBottom: "16px" }}>
                       <h3 className="project-section-title">Key Highlights</h3>
                       <ul className="project-highlights space-y-2">
                         {p.highlights.map(function (h, idx) {
-                          return (
-                            <li key={idx} className="project-highlight">
-                              {h}
-                            </li>
-                          );
+                          return <li key={idx} className="project-highlight">{h}</li>;
                         })}
                       </ul>
                     </div>
 
-                    {/* stack */}
-                    <div
-                      className="tech-stack"
-                      style={{ marginBottom: "24px" }}
-                    >
+                    <div className="tech-stack" style={{ marginBottom: "20px" }}>
                       {p.stack.map(function (tech) {
-                        return (
-                          <span key={tech} className="badge badge-purple">
-                            {tech}
-                          </span>
-                        );
+                        return <span key={tech} className="badge badge-purple">{tech}</span>;
                       })}
                     </div>
                   </div>
 
-                  {/* links */}
                   <div className="project-links">
-                    
-                      <Link
-                        to="/projects/$slug"
-                        params={{ slug: p.slug }}
-                        className="project-link"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
-                        View case study <ArrowUpRight size={14} />
-                      </Link>
-                      
+                    <Link to="/projects/$slug" params={{ slug: p.slug }} className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                      View case study <ArrowUpRight size={14} />
+                    </Link>
                     {p.github && (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-link-secondary"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
+                      <a href={p.github} target="_blank" rel="noreferrer" className="project-link-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
                         <Github size={14} /> GitHub
                       </a>
                     )}
                     {p.live && (
-                      <a
-                        href={p.live}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-link-secondary"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
+                      <a href={p.live} target="_blank" rel="noreferrer" className="project-link-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
                         <ExternalLink size={14} /> Live Demo
                       </a>
                     )}
                     {p.upcoming && (
-                      <span
-                        className="project-link"
-                        style={{ color: "var(--purple)" }}
-                      >
-                        In Progress — Coming Soon 
-                      </span>
+                      <span className="project-link" style={{ color: "var(--purple)" }}>In Progress — Coming Soon</span>
                     )}
                   </div>
                 </div>

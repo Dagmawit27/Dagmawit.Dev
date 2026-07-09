@@ -51,40 +51,21 @@ function ProjectDetail() {
           >
             ← All work
           </Link>
-          <div style={{ marginTop: "40px", display: "grid", gap: "40px" }}>
+          <div className="slug-header-grid">
             <div>
-              <div className="eyebrow">
-                Case Study Nº {String(idx + 1).padStart(2, "0")}
-              </div>
-              <h1 className="heading" style={{ marginTop: "24px" }}>
-                {project.title}
-              </h1>
-              <p className="section-description">
-                {project.tagline}
-              </p>
+              <div className="eyebrow">Case Study Nº {String(idx + 1).padStart(2, "0")}</div>
+              <h1 className="heading" style={{ marginTop: "20px" }}>{project.title}</h1>
+              <p className="section-description">{project.tagline}</p>
             </div>
-            <div className="card" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", alignSelf: "end", padding: "24px", fontSize: "14px" }}>
-              <div>
-                <div className="eyebrow">Year</div>
-                <div style={{ marginTop: "4px" }}>{project.year}</div>
-              </div>
-              <div>
-                <div className="eyebrow">Role</div>
-                <div style={{ marginTop: "4px" }}>{project.role}</div>
-              </div>
-              <div>
-                <div className="eyebrow">Stack</div>
-                <div style={{ marginTop: "4px" }}>{project.stack.join(", ")}</div>
-              </div>
+            <div className="card slug-meta-card">
+              <div><div className="eyebrow">Year</div><div style={{ marginTop: "4px" }}>{project.year}</div></div>
+              <div><div className="eyebrow">Role</div><div style={{ marginTop: "4px" }}>{project.role}</div></div>
+              <div><div className="eyebrow">Stack</div><div style={{ marginTop: "4px" }}>{project.stack.join(", ")}</div></div>
               <div>
                 <div className="eyebrow">Links</div>
                 <div style={{ marginTop: "4px", display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <a href={project.live} target="_blank" rel="noreferrer" className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                    Live site <ArrowUpRight size={13} />
-                  </a>
-                  <a href={project.github} target="_blank" rel="noreferrer" className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                    Source <ArrowUpRight size={13} />
-                  </a>
+                  {project.live && <a href={project.live} target="_blank" rel="noreferrer" className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>Live site <ArrowUpRight size={13} /></a>}
+                  {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>Source <ArrowUpRight size={13} /></a>}
                 </div>
               </div>
             </div>
@@ -147,18 +128,14 @@ function ProjectDetail() {
       {/* Problem / Approach */}
       <section style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", background: "rgba(245,245,245,0.5)" }}>
         <div className="container section">
-          <div className="grid grid-2 gap-6">
+          <div className="slug-problem-grid">
             <div>
               <div className="eyebrow">The problem</div>
-              <p style={{ marginTop: "24px", fontSize: "16px", lineHeight: 1.7 }}>
-                {project.problem}
-              </p>
+              <p style={{ marginTop: "20px", fontSize: "16px", lineHeight: 1.7 }}>{project.problem}</p>
             </div>
             <div>
               <div className="eyebrow">The approach</div>
-              <p style={{ marginTop: "24px", fontSize: "16px", lineHeight: 1.7 }}>
-                {project.approach}
-              </p>
+              <p style={{ marginTop: "20px", fontSize: "16px", lineHeight: 1.7 }}>{project.approach}</p>
             </div>
           </div>
         </div>
@@ -168,16 +145,12 @@ function ProjectDetail() {
       <section className="section">
         <div className="container">
           <div className="eyebrow">Highlights</div>
-          <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "20px" }}>
+          <div className="slug-highlights-grid">
             {project.highlights.map(function (h, i) {
               return (
                 <div key={h} className="card">
-                  <span className="eyebrow accent-text">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p style={{ marginTop: "16px", fontSize: "16px", fontWeight: 600, letterSpacing: "-0.02em" }}>
-                    {h}
-                  </p>
+                  <span className="eyebrow accent-text">{String(i + 1).padStart(2, "0")}</span>
+                  <p style={{ marginTop: "12px", fontSize: "15px", fontWeight: 600, letterSpacing: "-0.02em" }}>{h}</p>
                 </div>
               );
             })}
@@ -190,15 +163,11 @@ function ProjectDetail() {
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="container">
             <div className="eyebrow" style={{ marginBottom: "32px" }}>Gallery</div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
+            <div className="slug-gallery-grid">
               {project.gallery.map(function (src, i) {
                 return (
-                  <div key={i} style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid var(--border)", background: "var(--muted)" }}>
-                    <img
-                      src={src}
-                      alt={project.title + " screenshot " + (i + 1)}
-                      style={{ width: "100%", display: "block", objectFit: "contain" }}
-                    />
+                  <div key={i} style={{ borderRadius: "10px", overflow: "hidden", border: "1px solid var(--border)", background: "var(--muted)" }}>
+                    <img src={src} alt={project.title + " screenshot " + (i + 1)} style={{ width: "100%", display: "block", objectFit: "contain" }} />
                   </div>
                 );
               })}
@@ -210,25 +179,14 @@ function ProjectDetail() {
       {/* Next */}
       <section className="section">
         <div className="container">
-          <Link
-            to="/projects/$slug"
-            params={{ slug: next.slug }}
-            className="card"
-            style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}
-          >
+          <Link to="/projects/$slug" params={{ slug: next.slug }} className="card slug-next-card">
             <div>
               <div className="eyebrow">Next case study</div>
-              <div style={{ marginTop: "12px", fontSize: "2rem", fontWeight: 600, letterSpacing: "-0.03em" }}>
-                {next.title}
-              </div>
+              <div style={{ marginTop: "10px", fontSize: "1.6rem", fontWeight: 600, letterSpacing: "-0.03em" }}>{next.title}</div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <img
-                src={next.cover}
-                alt={next.title}
-                style={{ height: "96px", width: "144px", borderRadius: "8px", objectFit: "cover" }}
-              />
-              <span style={{ fontSize: "24px" }}><ArrowUpRight size={24} /></span>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <img src={next.cover} alt={next.title} className="slug-next-thumb" />
+              <ArrowUpRight size={24} />
             </div>
           </Link>
         </div>

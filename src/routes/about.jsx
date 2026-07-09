@@ -53,72 +53,21 @@ function About() {
       {/* BIOGRAPHY + IMAGE side by side */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "56px",
-            alignItems: "center",
-          }}>
-            {/* LEFT — bio text */}
+          <div className="about-bio-grid">
             <div>
               <div className="eyebrow">Biography</div>
-              <div style={{
-                marginTop: "24px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-                fontSize: "16px",
-                lineHeight: 1.7,
-                color: "var(--foreground)",
-              }}>
-                <p>
-                  Hi, I'm <strong>Dagmawit Mesfin</strong> — a Computer Science
-                  student at the University of Gondar with a persistent interest in
-                  web development and modern technologies.
-                </p>
-                <p>
-                  I specialise in frontend development with HTML, CSS, JavaScript,
-                  and React, and hold strong ground in Java, C++, data structures,
-                  and algorithms.
-                </p>
-                <p>
-                  A self-taught learner shaped by FreeCodeCamp, Udacity, and endless
-                  nights on YouTube — I build responsive, SEO-friendly websites that
-                  turn ideas into impactful, well-crafted digital experiences.
-                </p>
+              <div className="bio-text">
+                <p>Hi, I'm <strong>Dagmawit Mesfin</strong> — a Computer Science student at the University of Gondar with a persistent interest in web development and modern technologies.</p>
+                <p>I specialise in frontend development with HTML, CSS, JavaScript, and React, and hold strong ground in Java, C++, data structures, and algorithms.</p>
+                <p>A self-taught learner shaped by FreeCodeCamp, Udacity, and endless nights on YouTube — I build responsive, SEO-friendly websites that turn ideas into impactful, well-crafted digital experiences.</p>
               </div>
-              <div style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "12px" }}>
-                <Link to="/projects" className="header-cta">
-                  See my work <ArrowUpRight size={14} />
-                </Link>
-                <Link to="/contact" className="btn btn-secondary">
-                  Get in touch
-                </Link>
+              <div className="mt-actions">
+                <Link to="/projects" className="header-cta">See my work <ArrowUpRight size={14} /></Link>
+                <Link to="/contact" className="btn btn-secondary">Get in touch</Link>
               </div>
             </div>
-
-            {/* RIGHT — portrait */}
-            <div style={{
-              borderRadius: "20px",
-              overflow: "hidden",
-              border: "1px solid var(--border)",
-              boxShadow: "0 8px 40px rgba(15,23,42,0.10)",
-              background: "var(--muted)",
-              maxWidth: "340px",
-              justifySelf: "center",
-            }}>
-              <img
-                src="/assets/myPicture.png"
-                alt="Portrait of Dagmawit Mesfin"
-                style={{
-                  width: "100%",
-                  display: "block",
-                  objectFit: "contain",
-                  transition: "transform 0.5s ease",
-                }}
-                onMouseEnter={function (e) { e.currentTarget.style.transform = "scale(1.01)"; }}
-                onMouseLeave={function (e) { e.currentTarget.style.transform = "scale(1)"; }}
-              />
+            <div className="about-portrait">
+              <img src="/assets/myPicture.png" alt="Portrait of Dagmawit Mesfin" />
             </div>
           </div>
         </div>

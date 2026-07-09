@@ -768,20 +768,35 @@ a:hover {
 
 /* Footer */
 .footer {
-  margin-top: 96px;
+  margin-top: 64px;
   border-top: 1px solid var(--border);
   background-color: rgba(245, 245, 245, 0.6);
 }
 
 .footer-content {
   display: grid;
-  gap: 40px;
-  padding: 64px 0;
+  gap: 32px;
+  padding: 40px 0;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 639px) {
+  .footer-content {
+    text-align: center;
+  }
+  .footer-brand {
+    justify-content: center;
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (min-width: 640px) {
   .footer-content {
     grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding: 64px 0;
   }
 }
 
@@ -799,11 +814,18 @@ a:hover {
 }
 
 .footer-description {
-  margin-top: 24px;
-  max-width: 448px;
+  margin-top: 16px;
+  max-width: 100%;
   font-size: 14px;
   line-height: 1.6;
   color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .footer-description {
+    margin-top: 24px;
+    max-width: 448px;
+  }
 }
 
 .footer-section-title {
@@ -813,20 +835,29 @@ a:hover {
   letter-spacing: 0.18em;
   color: var(--purple);
   margin-bottom: 16px;
+  margin-top: 0;
 }
 
 .footer-links {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
 }
 
 .footer-link {
-  margin-bottom: 10px;
+  display: inline-block;
   font-size: 14px;
   color: var(--muted-foreground);
+  transition: color 0.2s;
 }
 
 .footer-link:hover {
   color: var(--foreground);
+  opacity: 1;
 }
 
 .footer-bottom {
@@ -840,13 +871,19 @@ a:hover {
   color: var(--muted-foreground);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .footer-bottom {
     flex-direction: row;
   }
 }
 
-/* Utility */
+/* Footer responsive — center on mobile, 3-col at desktop */
+@media (max-width: 639px) {
+  .footer-bottom {
+    text-align: center;
+    align-items: center;
+  }
+}
 .text-center {
   text-align: center;
 }
@@ -912,3 +949,5 @@ a:hover {
 .space-y-6 > * + * {
   margin-top: 24px;
 }
+
+/* Utility */
